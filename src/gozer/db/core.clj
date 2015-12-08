@@ -26,6 +26,7 @@
 
 (defn apply-db-schema
   "Sets up the schema in datomic for the application."
+  []
   (let [schemas (us/new-loader)]
     (doseq [s schemas]
-      (sl/load-schema s (:datomic-conn @conn)))))
+      (load/load-schema s (:datomic-conn @conn)))))
