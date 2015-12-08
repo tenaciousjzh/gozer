@@ -27,7 +27,7 @@
                  [metosin/compojure-api "0.24.1"]
                  [metosin/ring-swagger-ui "2.1.3-4"]
                  [http-kit "2.1.19"]
-                 [com.datomic/datomic-free "0.9.5327"]
+                 [com.datomic/datomic-free "0.9.5327" :exclusions [joda-time]]
                  [io.rkn/conformity "0.4.0"]]
 
   :uberjar-name (str "gozer-" ver ".jar")

@@ -2,7 +2,9 @@
   (:require [datomic.api :as d]
             [environ.core :refer [env]]
             [clojure.edn :as edn]
-            [taoensso.timbre :as timbre]))
+            [taoensso.timbre :as timbre]
+            [gozer.db.schema-loader :as load]
+            [gozer.db.users-schema :as us]))
 
 (def conn (atom nil))
 
@@ -17,3 +19,13 @@
                                     (d/connect db-uri))))))
 (defn db []
   (d/db (:db-conn @conn)))
+
+(defn remove-db [& {:keys [db-uri]
+                    :or {db-uri (:database-uri env)}}]
+  (d/delete-database db-uri))
+
+(defn apply-db-schema
+  "Sets up the schema in datomic for the application."
+  (let [schemas (us/new-loader)]
+    (doseq [s schemas]
+      (sl/load-schema s (:datomic-conn @conn)))))
