@@ -32,6 +32,13 @@
             :db/cardinality :db.cardinality/one
             :db/index false
             :db.install/_attribute :db.part/db}
+
+           {:db/id (d/tempid :db.part/db)
+            :db/ident :user/recovery-email
+            :db/valueType :db.type/string
+            :db/cardinality :db.cardinality/one
+            :db/index false
+            :db.install/_attribute :db.part/db}
            ]]})
 
 (def schema
