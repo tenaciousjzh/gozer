@@ -1,7 +1,8 @@
 (ns gozer.security.authenticate
   (:require [gozer.db.core :as dbc]
             [datomic.api :as d]
-            [buddy.hashers :as hashers]
+            [buddy.core.hash :as hash]
+            [buddy.core.codecs :refer [bytes->hex]]
             [taoensso.timbre :as timbre]))
 
 (defn login
